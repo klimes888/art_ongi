@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>온기</title>
+    <style>
+      .stripe-bg {
+        background-image: repeating-linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.02) 0px,
+          rgba(0, 0, 0, 0.02) 1px,
+          transparent 4px,
+          transparent 16px
+        );
+      }
+    </style>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind 커스텀 설정 -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#3B82F6",
+              secondary: "#8B5CF6",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50 full-size">
+    <!-- 히어로 섹션 -->
+    <section class="w-full h-lvh">
+      as
+      <div class="w-full h-full relative">
+        <!-- 백그라운드 이미지 (full-size) -->
+        <img
+          src="assets/background.jpg"
+          alt="백그라운드"
+          class="w-full h-full object-cover"
+        />
+        <!-- 배너 이미지 (absolute로 백그라운드 위에 겹침, padding 4) -->
+        <div class="absolute top-0 left-0 w-full h-full p-4">
+          <img
+            src="assets/banner.png"
+            alt="배너"
+            class="w-full h-full object-contain"
+          />
+        </div>
+      </div>
+    </section>
+    <section class="w-full h-lvh stripe-bg">
+      <div class="px-6 py-12">
+        <h2 class="text-xl md:text-3xl font-medium text-gray-900 mb-6">
+          전시 소개 영상
+        </h2>
+      </div>
+    </section>
+
+    <!-- 특징 섹션 -->
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-6 text-center">
+        <p>&copy; 2024 회사명. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+  </body>
+</html>
