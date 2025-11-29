@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>온기</title>
     <style>
+      @font-face {
+        font-family: "MiceGothic";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic.woff2")
+          format("woff2");
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "MiceGothic";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2")
+          format("woff2");
+        font-weight: 700;
+        font-display: swap;
+      }
       .stripe-bg {
         background-image: repeating-linear-gradient(
           to right,
@@ -32,19 +47,18 @@
       };
     </script>
   </head>
-  <body class="bg-gray-50 full-size">
+  <body class="font-[MiceGothic] bg-gray-50 full-size">
     <!-- 히어로 섹션 -->
     <section class="w-full h-lvh">
-      as
       <div class="w-full h-full relative">
         <!-- 백그라운드 이미지 (full-size) -->
         <img
-          src="assets/background.jpg"
+          src="assets/background.png"
           alt="백그라운드"
           class="w-full h-full object-cover"
         />
         <!-- 배너 이미지 (absolute로 백그라운드 위에 겹침, padding 4) -->
-        <div class="absolute top-0 left-0 w-full h-full p-4">
+        <div class="absolute top-0 left-0 w-full h-full p-6">
           <img
             src="assets/banner.png"
             alt="배너"
