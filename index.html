@@ -23,9 +23,9 @@
       .stripe-bg {
         background-image: repeating-linear-gradient(
           to right,
-          rgba(0, 0, 0, 0.02) 0px,
-          rgba(0, 0, 0, 0.02) 1px,
-          transparent 4px,
+          rgb(241, 239, 229, 0.8) 0px,
+          rgb(241, 239, 229, 0.8) 0px,
+          transparent 6px,
           transparent 16px
         );
       }
@@ -67,16 +67,62 @@
         </div>
       </div>
     </section>
-    <section class="w-full h-lvh stripe-bg">
+    <!-- 소개 섹션 -->
+    <section class="w-full stripe-bg">
       <div class="px-6 py-12">
-        <h2 class="text-xl md:text-3xl font-medium text-gray-900 mb-6">
+        <h2 class="text-xl md:text-3xl font-medium text-gray-900 mb-10">
           전시 소개 영상
         </h2>
+        <!-- 유튜브 영상 삽입 -->
+        <div class="w-full mb-10">
+          <iframe
+            class="w-full aspect-video rounded-md shadow-md"
+            src="https://www.youtube.com/embed/gncnsllB8O8?si=_mfwfklNanmTyUGx"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
       </div>
     </section>
 
     <!-- 특징 섹션 -->
-
+    <section class="w-full stripe-bg">
+      <div class="px-6 py-12">
+        <p id="featureText" class="text-base text-slate-500">
+          온기는 눈에 보이지 않아도 그 존재를 느낄 수 있습니다.<br />한 사람의
+          몸과 마음에서 시작된 온기는 손끝, 발끝으로 퍼져나가<br />우리의 일상
+          속 순간들을 지나며 번지고, 관계의 틈새를 따라 흐르며,<br />서로 다른
+          존재들을 부드럽게 이어줍니다.<br />이번 전시는 그러한 온기의 흔적을
+          따라가며 시작합니다.<br /><br />작가의 기억과 감정은 몸의 움직임을
+          타고 흘러 작품에 스며듭니다.<br />우리는 걸음을 멈추게 하는 작품과
+          마주하는 순간, 자신만의 온도로 작품의 온기를 서서히 받아들이게
+          됩니다.<br />
+          작가와 관람자 사이 서로의 공기가 포개어지면서 새로운 결이
+          그려집니다.<br />
+          헤어짐의 시간 속에서, 작품 곁에 남아있던 온기의 일부는 또 다른 곳을
+          향해 나아갑니다.<br />이렇게 하나의 작품은 수없이 많은 겹침과 흩어짐을
+          통해 온기의 형상을 만들어냅니다.<br /><br />작가들은 이번 전시를 향해
+          걸어오며 공간과 시간을 함께 나누어왔습니다.<br />작업의 재료와 방식은
+          달라도, 사물을 바라보는 시선과 손끝의 온기는 어느 순간 서로에게 영향을
+          주며<br />미세한 울림을 만들어냅니다. 때로는 겹쳐지듯 닿고, 때로는
+          흩어지며 각자의 자리로 돌아가는 과정은<br />매번 다른 모양으로
+          이루어집니다. 그것이 작가에게는 의도치 않았더라도<br />작업의 폭을
+          넓히는 작은 시작점이 되기도 합니다.<br /><br />작품마다 담긴 온기의
+          결은 서로 다르지만,<br />그 안에는 작가들이 쌓아온 시간이 조용한
+          층위를 이루고 있습니다.<br />그렇게 모여든 온기는 겹쳐지고 흩어지는
+          흐름이 되어 공간을 채워갑니다.<br />지금 우리 앞에 머물러있는 온기를
+          천천히 느껴보시기 바랍니다.
+        </p>
+        <button
+          id="toggleLangBtn"
+          class="mt-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+        >
+          English ver.
+        </button>
+      </div>
+    </section>
     <!-- 푸터 -->
     <footer class="bg-gray-800 text-white py-8">
       <div class="container mx-auto px-6 text-center">
