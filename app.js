@@ -113,3 +113,52 @@ window.addEventListener("scroll", function () {
     header.classList.remove("shadow-md");
   }
 });
+
+// js/artistRender.js
+document.addEventListener("DOMContentLoaded", () => {
+  const artistSection = document.getElementById("artistSection");
+
+  // 카테고리 제목 매핑
+  const categoryMap = {
+    metal: "금속",
+    pottery: "도자",
+    glass: "유리",
+    fabric: "섬유",
+    lacquered: "옻칠",
+  };
+
+  // window.ARTISTS는 { metal: [...], pottery: [...] } 구조
+  Object.entries(window.ARTISTS).forEach(([categoryKey, artists]) => {
+    const categoryTitle = categoryMap[categoryKey] || categoryKey;
+
+    // 카테고리 제목 출력
+    artistSection.innerHTML += `
+      <h3 class="text-xl md:text-2xl font-medium text-gray-900 mb-10">${categoryTitle}</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mb-16" id="group-${categoryKey}">
+      </div>
+    `;
+
+    const groupContainer = document.getElementById(`group-${categoryKey}`);
+
+    // 작가 카드 출력
+    artists.forEach((artist) => {
+      groupContainer.innerHTML += `
+        <button
+          type="button"
+          class="flex flex-col text-left cursor-pointer hover:opacity-80 transition-opacity"
+          data-artist-card
+          data-artist-name="${artist.name} ${artist.nameEn}"
+          data-artist-image="${artist.image}"
+          data-artist-desc="${artist.description.replace(/\n/g, "<br/>")}"
+        >
+          <div class="w-full aspect-square bg-gray-200 overflow-hidden rounded-md">
+            <img src="${artist.image}" class="w-full h-full object-cover" />
+          </div>
+          <h3 class="text-lg font-medium mt-4">${artist.name} ${
+        artist.nameEn
+      }</h3>
+        </button>
+      `;
+    });
+  });
+});
