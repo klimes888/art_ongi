@@ -145,14 +145,16 @@ document.addEventListener("DOMContentLoaded", () => {
       groupContainer.innerHTML += `
         <button
           type="button"
-          class="flex flex-col text-left cursor-pointer hover:opacity-80 transition-opacity"
+          class="flex flex-col text-left cursor-pointer"
           data-artist-card
           data-artist-name="${artist.name} ${artist.nameEn}"
           data-artist-image="${artist.image}"
           data-artist-desc="${artist.description.replace(/\n/g, "<br/>")}"
         >
-          <div class="w-full aspect-square bg-gray-200 overflow-hidden rounded-md">
-            <img src="${artist.image}" class="w-full h-full object-cover" />
+          <div class="w-full aspect-square bg-gray-200 overflow-hidden rounded-md relative group">
+            <img src="${
+              artist.image
+            }" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />
           </div>
           <h3 class="text-lg font-medium mt-4">${artist.name} ${
         artist.nameEn
