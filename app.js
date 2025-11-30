@@ -114,53 +114,101 @@ window.addEventListener("scroll", function () {
   }
 });
 
-// js/artistRender.js
+// 작가 렌더링
 document.addEventListener("DOMContentLoaded", () => {
   const artistSection = document.getElementById("artistSection");
 
-  // 카테고리 제목 매핑
-  const categoryMap = {
-    metal: "금속",
-    pottery: "도자",
-    glass: "유리",
-    fabric: "섬유",
-    lacquered: "옻칠",
-  };
+  console.log("Artist Section:", artistSection);
+  console.log("ARTISTS Data:", window.ARTISTS);
+  console.log("Is Array:", Array.isArray(window.ARTISTS));
 
-  // window.ARTISTS는 { metal: [...], pottery: [...] } 구조
-  Object.entries(window.ARTISTS).forEach(([categoryKey, artists]) => {
-    const categoryTitle = categoryMap[categoryKey] || categoryKey;
+  if (!artistSection) {
+    console.error("artistSection element not found!");
+    return;
+  }
 
-    // 카테고리 제목 출력
-    artistSection.innerHTML += `
-      <h3 class="text-xl sm:text-xl md:text-2xl font-medium text-gray-900 mb-6 md:mb-10">${categoryTitle}</h3>
-      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 mb-10 md:mb-16" id="group-${categoryKey}">
-      </div>
+  if (!window.ARTISTS) {
+    console.error("window.ARTISTS not found!");
+    return;
+  }
+
+  if (!Array.isArray(window.ARTISTS)) {
+    console.error("window.ARTISTS is not an array!");
+    return;
+  }
+
+  console.log(`Rendering ${window.ARTISTS.length} artists...`);
+
+  // 작가 그리드 컨테이너 생성
+  const gridHTML = `
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-6 md:gap-10 mb-10 md:mb-16 stagger-animation" id="artist-grid">
+    </div>
+  `;
+
+  artistSection.innerHTML += gridHTML;
+  const gridContainer = document.getElementById("artist-grid");
+
+  if (!gridContainer) {
+    console.error("artist-grid container not found!");
+    return;
+  }
+
+  // 모든 작가 카드 출력
+  window.ARTISTS.forEach((artist, index) => {
+    console.log(`Rendering artist ${index + 1}:`, artist.name);
+
+    const artistCard = `
+      <button
+        type="button"
+        class="flex flex-col text-left cursor-pointer min-h-[44px] touch-manipulation stagger-item opacity-0 translate-y-8 transition-all duration-700"
+        data-artist-card
+        data-artist-name="${artist.name} ${artist.nameEn}"
+        data-artist-image="${artist.image}"
+        data-artist-desc="${artist.description.replace(/\n/g, "<br/>")}"
+      >
+        <div class="w-full aspect-square bg-gray-200 overflow-hidden rounded-md relative group">
+          <img
+            src="${artist.image}"
+            alt="${artist.name}"
+            class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+          />
+        </div>
+        <h4 class="text-base sm:text-lg font-medium mt-3 sm:mt-4">
+          ${artist.name} ${artist.nameEn}
+        </h4>
+      </button>
     `;
 
-    const groupContainer = document.getElementById(`group-${categoryKey}`);
-
-    // 작가 카드 출력
-    artists.forEach((artist) => {
-      groupContainer.innerHTML += `
-        <button
-          type="button"
-          class="flex flex-col text-left cursor-pointer min-h-[44px] touch-manipulation"
-          data-artist-card
-          data-artist-name="${artist.name} ${artist.nameEn}"
-          data-artist-image="${artist.image}"
-          data-artist-desc="${artist.description.replace(/\n/g, "<br/>")}"
-        >
-          <div class="w-full aspect-square bg-gray-200 overflow-hidden rounded-md relative group">
-            <img src="${
-              artist.image
-            }" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />
-          </div>
-          <h4 class="text-base sm:text-lg font-medium mt-3 sm:mt-4">${
-            artist.name
-          } ${artist.nameEn}</h4>
-        </button>
-      `;
-    });
+    gridContainer.innerHTML += artistCard;
   });
+
+  console.log("Artist rendering completed!");
+
+  // 애니메이션 트리거 (카드가 생성된 후)
+  setTimeout(() => {
+    const items = gridContainer.querySelectorAll(".stagger-item");
+
+    // Intersection Observer로 스크롤 애니메이션 설정
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            items.forEach((item, index) => {
+              setTimeout(() => {
+                item.classList.add("animate-fade-in-up");
+                item.classList.remove("opacity-0", "translate-y-8");
+              }, index * 100);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
+
+    observer.observe(gridContainer);
+  }, 100);
 });
