@@ -133,8 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 카테고리 제목 출력
     artistSection.innerHTML += `
-      <h3 class="text-xl md:text-2xl font-medium text-gray-900 mb-10">${categoryTitle}</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mb-16" id="group-${categoryKey}">
+      <h3 class="text-xl sm:text-xl md:text-2xl font-medium text-gray-900 mb-6 md:mb-10">${categoryTitle}</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 mb-10 md:mb-16" id="group-${categoryKey}">
       </div>
     `;
 
@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
       groupContainer.innerHTML += `
         <button
           type="button"
-          class="flex flex-col text-left cursor-pointer"
+          class="flex flex-col text-left cursor-pointer min-h-[44px] touch-manipulation"
           data-artist-card
           data-artist-name="${artist.name} ${artist.nameEn}"
           data-artist-image="${artist.image}"
@@ -156,9 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
               artist.image
             }" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />
           </div>
-          <h3 class="text-lg font-medium mt-4">${artist.name} ${
-        artist.nameEn
-      }</h3>
+          <h4 class="text-base sm:text-lg font-medium mt-3 sm:mt-4">${
+            artist.name
+          } ${artist.nameEn}</h4>
         </button>
       `;
     });
