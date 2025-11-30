@@ -1,0 +1,25 @@
+{
+  "name": "ongi-exhibition",
+  "version": "1.0.0",
+  "description": "온기 - 청주공예관 전시 웹사이트",
+  "main": "index.html",
+  "scripts": {
+    "predeploy": "echo 'Preparing to deploy...'",
+    "deploy": "gh-pages -d .",
+    "start": "python3 -m http.server 8000 || python -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/yourrepo.git"
+  },
+  "keywords": [
+    "exhibition",
+    "art",
+    "청주공예관"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}
