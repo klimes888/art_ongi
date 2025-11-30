@@ -29,6 +29,31 @@
           transparent 16px
         );
       }
+
+      /* 스크롤 애니메이션 */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      /* 기본 숨김 상태 */
+      .opacity-0 {
+        opacity: 0;
+      }
+
+      .translate-y-8 {
+        transform: translateY(2rem);
+      }
     </style>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -68,7 +93,7 @@
       </div>
     </section>
     <!-- 소개 섹션 -->
-    <section class="w-full stripe-bg">
+    <section class="w-full stripe-bg animate-on-scroll">
       <div class="px-6 py-12">
         <h2 class="text-xl md:text-3xl font-medium text-gray-900 mb-10">
           전시 소개 영상
@@ -88,7 +113,7 @@
     </section>
 
     <!-- 특징 섹션 -->
-    <section class="w-full">
+    <section class="w-full animate-on-scroll">
       <div class="px-6 py-12">
         <p id="featureText" class="text-base text-slate-500">
           온기는 눈에 보이지 않아도 그 존재를 느낄 수 있습니다.<br />한 사람의
@@ -124,7 +149,7 @@
       </div>
     </section>
     <!-- 참여 작가 섹션 -->
-    <section class="w-full stripe-bg py-16">
+    <section class="w-full stripe-bg py-16 animate-on-scroll">
       <div id="artistSection" class="px-6">
         <h2 class="text-xl md:text-3xl font-medium text-gray-900 mb-10">
           참여 작가
@@ -173,9 +198,8 @@
       </div>
     </div>
     <!-- 크레딧 섹션 -->
-    <!-- 크레딧 섹션 -->
     <section
-      class="w-full stripe-bg py-16 bg-cover bg-center"
+      class="w-full stripe-bg py-16 bg-cover bg-center credit-section"
       style="background-image: url('assets/footer_credit.jpg')"
     >
       <div class="max-w-7xl mx-auto px-6">
@@ -185,7 +209,9 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <!-- Column 1 -->
-          <div class="space-y-6 text-sm">
+          <div
+            class="space-y-6 text-sm credit-column opacity-0 translate-y-8 transition-all duration-700"
+          >
             <h3 class="text-xl font-medium">Credits</h3>
 
             <div>
@@ -217,7 +243,9 @@
           </div>
 
           <!-- Column 2 -->
-          <div class="space-y-6 text-sm">
+          <div
+            class="space-y-6 text-sm credit-column opacity-0 translate-y-8 transition-all duration-700"
+          >
             <h3 class="text-xl font-medium">전시</h3>
 
             <div>
@@ -246,7 +274,9 @@
           </div>
 
           <!-- Column 3 -->
-          <div class="space-y-6 text-sm">
+          <div
+            class="space-y-6 text-sm credit-column opacity-0 translate-y-8 transition-all duration-700"
+          >
             <h3 class="text-xl font-medium">
               2024 Craft Studio Resident Artists Exhibition
             </h3>
@@ -281,7 +311,9 @@
           </div>
 
           <!-- Column 4 -->
-          <div class="space-y-6 text-sm">
+          <div
+            class="space-y-6 text-sm credit-column opacity-0 translate-y-8 transition-all duration-700"
+          >
             <h3 class="text-xl font-medium">Exhibition</h3>
 
             <div>
@@ -317,14 +349,51 @@
     </section>
 
     <!-- 푸터 -->
-    <footer class="bg-gray-800 text-white py-8">
-      <div class="container mx-auto px-6 text-center">
-        <p>&copy; 2024 회사명. All rights reserved.</p>
+    <footer class="w-full bg-white pt-10 pb-16 border-t border-gray-300">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <!-- 로고 그룹 -->
+        <div class="flex items-center justify-center gap-10 mb-6 flex-wrap">
+          <img
+            src="assets/logo/cheongjuCity.png"
+            alt="Cheongju City"
+            class="h-10 object-contain"
+          />
+          <img
+            src="assets/logo/chungjuCulture.png"
+            alt="Cultural Foundation"
+            class="h-10 object-contain"
+          />
+          <img
+            src="assets/logo/koreanCraft.jpg"
+            alt="Korean Craft Museum"
+            class="h-10 object-contain"
+          />
+        </div>
+
+        <!-- 주소 / 웹사이트 / 전화 -->
+        <p class="text-sm text-gray-700 leading-relaxed">
+          (우) 28501 충북 청주시 청원구 상당로 314 문화제조창 본관 4층
+          <span class="mx-2">/</span>
+          <a
+            href="http://www.ckjcm.org"
+            target="_blank"
+            class="underline hover:text-gray-900"
+            >www.ckjcm.org</a
+          >
+          <span class="mx-2">/</span>
+          TEL. 043-219-1800
+        </p>
+
+        <!-- 저작권 -->
+        <p class="text-sm text-gray-700 mt-4">
+          Copyright © 2024 KOREAN CRAFT MUSEUM. All rights reserved.
+        </p>
       </div>
     </footer>
 
     <!-- JavaScript -->
     <script src="data/artists.js"></script>
+    <script src="js/scrollAnimation.js"></script>
     <script src="js/artistModal.js"></script>
     <script src="app.js"></script>
   </body>
