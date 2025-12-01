@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 작가 그리드 컨테이너 생성
   const gridHTML = `
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-6 md:gap-10 mb-10 md:mb-16 stagger-animation" id="artist-grid">
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-6 md:gap-10 mb-10 md:mb-16 stagger-animation font-[GowoonDodum]" id="artist-grid">
     </div>
   `;
 

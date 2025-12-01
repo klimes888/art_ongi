@@ -6,6 +6,14 @@
     <title>온기</title>
     <style>
       @font-face {
+        font-family: "GowoonDodum";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff")
+          format("woff");
+        font-weight: normal;
+        font-display: swap;
+      }
+
+      @font-face {
         font-family: "MiceMyungjo";
         src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2")
           format("woff2");
@@ -83,6 +91,12 @@
         .hero-section {
           min-height: 100vh;
           min-height: 100dvh; /* 동적 뷰포트 높이 */
+        }
+
+        /* 모바일에서 히어로 섹션 높이 자동 */
+        .hero-mobile {
+          height: auto !important;
+          min-height: auto !important;
         }
 
         /* 크레딧 섹션 텍스트 크기 */
@@ -176,6 +190,29 @@
         }
       }
 
+      /* 모달 영상 및 컨텐츠 높이 맞춤 */
+      .modal-video-container {
+        aspect-ratio: 9 / 16;
+      }
+
+      .modal-content-container {
+        height: 100%;
+      }
+
+      .modal-description {
+        max-height: 30%;
+      }
+
+      @media (min-width: 768px) {
+        .modal-video-container {
+          height: 600px;
+        }
+
+        .modal-content-container {
+          height: 600px;
+        }
+      }
+
       /* 모달 반응형 스타일 */
       @media (max-width: 768px) {
         #artistModal .max-w-6xl {
@@ -195,33 +232,24 @@
           grid-template-columns: 1fr;
         }
 
-        #artistYoutubeContainer {
+        .modal-video-container {
           aspect-ratio: 16 / 9 !important;
+          height: auto !important;
         }
-      }
 
-      /* 이미지 리스트 스크롤바 스타일 */
-      #artistImageList {
-        scrollbar-width: thin;
-        scrollbar-color: #cbd5e0 #f7fafc;
-      }
+        .modal-content-container {
+          height: auto !important;
+        }
 
-      #artistImageList::-webkit-scrollbar {
-        height: 8px;
-      }
+        .modal-description {
+          max-height: 200px;
+        }
 
-      #artistImageList::-webkit-scrollbar-track {
-        background: #f7fafc;
-        border-radius: 4px;
-      }
-
-      #artistImageList::-webkit-scrollbar-thumb {
-        background: #cbd5e0;
-        border-radius: 4px;
-      }
-
-      #artistImageList::-webkit-scrollbar-thumb:hover {
-        background: #a0aec0;
+        /* 모바일에서 이미지 슬라이더 높이 지정 */
+        .modal-content-container > div:last-child {
+          min-height: 300px;
+          height: 300px;
+        }
       }
     </style>
     <!-- Tailwind CSS CDN -->
@@ -241,22 +269,23 @@
       };
     </script>
   </head>
-  <body class="font-[MiceMyungjo] bg-gray-50 full-size">
+
+  <body class="bg-gray-50 full-size font-[MiceMyungjo]">
     <!-- 히어로 섹션 -->
-    <section class="w-full md:h-lvh md:hero-section">
+    <section class="w-full md:h-lvh md:hero-section hero-mobile">
       <div class="w-full h-full relative">
         <!-- 백그라운드 이미지 (full-size) -->
         <img
           src="assets/background.png"
           alt="백그라운드"
-          class="w-full md:h-full object-cover"
+          class="hidden md:block w-full h-full object-cover"
         />
         <!-- 배너 이미지 (absolute로 백그라운드 위에 겹침, padding 4) -->
-        <div class="p-4 sm:p-6 absolute top-0 left-0 w-full h-full">
+        <div class="md:p-4 md:absolute top-0 left-0 w-full md:h-full">
           <img
             src="assets/banner.png"
             alt="배너"
-            class="w-full h-full object-contain"
+            class="w-full h-auto md:h-full object-contain"
           />
         </div>
       </div>
@@ -286,7 +315,7 @@
       <div class="px-4 sm:px-6 py-8 md:py-12">
         <p
           id="featureText"
-          class="text-sm sm:text-base text-slate-500 leading-relaxed"
+          class="text-sm sm:text-base text-slate-500 leading-relaxed font-[GowoonDodum]"
         >
           온기는 눈에 보이지 않아도 그 존재를 느낄 수 있습니다.<br />한 사람의
           몸과 마음에서 시작된 온기는 손끝, 발끝으로 퍼져나가<br />우리의 일상
@@ -873,12 +902,11 @@
           </div>
 
           <!-- 컨텐츠 영역: 좌측 유튜브, 우측 설명+이미지 -->
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-start">
             <!-- 왼쪽: 세로형 유튜브 영상 (4칼럼) -->
             <div
               id="artistYoutubeContainer"
-              class="md:col-span-4 relative bg-gray-100 rounded-md overflow-hidden"
-              style="aspect-ratio: 9 / 16;"
+              class="md:col-span-4 relative bg-gray-100 rounded-md overflow-hidden modal-video-container"
             >
               <iframe
                 id="artistModalYoutube"
@@ -892,17 +920,23 @@
             </div>
 
             <!-- 오른쪽: 설명 + 이미지 슬라이더 (8칼럼) -->
-            <div class="md:col-span-8 flex flex-col gap-6">
+            <div
+              class="md:col-span-8 flex flex-col gap-3 modal-content-container"
+            >
               <!-- 작품 설명 -->
-              <div class="bg-gray-50 p-4 rounded-md">
+              <div
+                class="bg-gray-50 p-4 rounded-md flex-shrink-0 overflow-y-auto modal-description"
+              >
                 <p
                   id="artistModalDesc"
-                  class="text-sm sm:text-base text-gray-700 leading-relaxed"
+                  class="text-sm sm:text-base text-gray-700 leading-relaxed whitespace-pre-wrap"
                 ></p>
               </div>
 
               <!-- 작품 이미지 슬라이더 -->
-              <div class="relative bg-gray-100 rounded-md overflow-hidden" style="aspect-ratio: 4 / 3;">
+              <div
+                class="relative bg-gray-100 rounded-md overflow-hidden flex-1 min-h-0"
+              >
                 <div id="artistImageSlider" class="w-full h-full relative">
                   <!-- 이미지가 여기에 동적으로 추가됨 -->
                 </div>
