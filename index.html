@@ -189,6 +189,39 @@
         #artistModal #artistModalNameEn {
           font-size: 1.25rem;
         }
+
+        /* 모바일에서 유튜브를 위로 */
+        #artistModal .grid {
+          grid-template-columns: 1fr;
+        }
+
+        #artistYoutubeContainer {
+          aspect-ratio: 16 / 9 !important;
+        }
+      }
+
+      /* 이미지 리스트 스크롤바 스타일 */
+      #artistImageList {
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e0 #f7fafc;
+      }
+
+      #artistImageList::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      #artistImageList::-webkit-scrollbar-track {
+        background: #f7fafc;
+        border-radius: 4px;
+      }
+
+      #artistImageList::-webkit-scrollbar-thumb {
+        background: #cbd5e0;
+        border-radius: 4px;
+      }
+
+      #artistImageList::-webkit-scrollbar-thumb:hover {
+        background: #a0aec0;
       }
     </style>
     <!-- Tailwind CSS CDN -->
@@ -839,12 +872,13 @@
             <div class="w-full h-px bg-gray-300"></div>
           </div>
 
-          <!-- 컨텐츠 영역: 유튜브(좌) + 이미지 슬라이드(우) -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <!-- 왼쪽: 유튜브 영상 -->
+          <!-- 컨텐츠 영역: 좌측 유튜브, 우측 설명+이미지 -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <!-- 왼쪽: 세로형 유튜브 영상 (4칼럼) -->
             <div
               id="artistYoutubeContainer"
-              class="relative aspect-video bg-gray-100 rounded-md overflow-hidden"
+              class="md:col-span-4 relative bg-gray-100 rounded-md overflow-hidden"
+              style="aspect-ratio: 9 / 16;"
             >
               <iframe
                 id="artistModalYoutube"
@@ -857,63 +891,66 @@
               ></iframe>
             </div>
 
-            <!-- 오른쪽: 이미지 슬라이더 -->
-            <div
-              class="relative aspect-video bg-gray-100 rounded-md overflow-hidden"
-            >
-              <div id="artistImageSlider" class="w-full h-full relative">
-                <!-- 이미지가 여기에 동적으로 추가됨 -->
+            <!-- 오른쪽: 설명 + 이미지 슬라이더 (8칼럼) -->
+            <div class="md:col-span-8 flex flex-col gap-6">
+              <!-- 작품 설명 -->
+              <div class="bg-gray-50 p-4 rounded-md">
+                <p
+                  id="artistModalDesc"
+                  class="text-sm sm:text-base text-gray-700 leading-relaxed"
+                ></p>
               </div>
-              <!-- 이전 버튼 -->
-              <button
-                id="modalPrevBtn"
-                class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all z-10"
-                style="display: none"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="w-6 h-6"
+
+              <!-- 작품 이미지 슬라이더 -->
+              <div class="relative bg-gray-100 rounded-md overflow-hidden" style="aspect-ratio: 4 / 3;">
+                <div id="artistImageSlider" class="w-full h-full relative">
+                  <!-- 이미지가 여기에 동적으로 추가됨 -->
+                </div>
+                <!-- 이전 버튼 -->
+                <button
+                  id="modalPrevBtn"
+                  class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all z-10"
+                  style="display: none"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
-              <!-- 다음 버튼 -->
-              <button
-                id="modalNextBtn"
-                class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all z-10"
-                style="display: none"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="w-6 h-6"
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                </button>
+                <!-- 다음 버튼 -->
+                <button
+                  id="modalNextBtn"
+                  class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all z-10"
+                  style="display: none"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
-
-          <!-- 설명 텍스트 -->
-          <p
-            id="artistModalDesc"
-            class="text-sm sm:text-base text-gray-700 leading-relaxed"
-          ></p>
         </div>
       </div>
     </div>
