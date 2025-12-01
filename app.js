@@ -162,9 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
         type="button"
         class="flex flex-col text-left cursor-pointer min-h-[44px] touch-manipulation stagger-item opacity-0 translate-y-8 transition-all duration-700"
         data-artist-card
-        data-artist-name="${artist.name} ${artist.nameEn}"
-        data-artist-image="${artist.image}"
-        data-artist-desc="${artist.description.replace(/\n/g, "<br/>")}"
+        data-artist-id="${artist.id}"
       >
         <div class="w-full aspect-square bg-gray-200 overflow-hidden rounded-md relative group">
           <img
@@ -210,5 +208,11 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     observer.observe(gridContainer);
+
+    // 작가 카드 생성 완료 후 모달 재초기화
+    if (window.artistModal) {
+      window.artistModal.setupModal();
+      console.log("Artist modal re-initialized!");
+    }
   }, 100);
 });

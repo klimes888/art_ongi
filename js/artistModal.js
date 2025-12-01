@@ -6,12 +6,20 @@
 class ArtistModal {
   constructor() {
     this.modal = null;
-    this.modalImage = null;
     this.modalName = null;
-    this.modalRole = null;
+    this.modalNameEn = null;
+    this.modalType = null;
     this.modalDesc = null;
     this.modalClose = null;
+    this.modalYoutube = null;
+    this.modalYoutubeContainer = null;
+    this.artistImageSlider = null;
+    this.modalPrevBtn = null;
+    this.modalNextBtn = null;
     this.artistCards = null;
+
+    this.currentImageIndex = 0;
+    this.currentImages = [];
 
     this.init();
   }
@@ -34,11 +42,18 @@ class ArtistModal {
   setupModal() {
     // DOM 요소 가져오기
     this.modal = document.getElementById("artistModal");
-    this.modalImage = document.getElementById("artistModalImage");
     this.modalName = document.getElementById("artistModalName");
-    this.modalRole = document.getElementById("artistModalRole");
+    this.modalNameEn = document.getElementById("artistModalNameEn");
+    this.modalType = document.getElementById("artistModalType");
     this.modalDesc = document.getElementById("artistModalDesc");
     this.modalClose = document.getElementById("artistModalClose");
+    this.modalYoutube = document.getElementById("artistModalYoutube");
+    this.modalYoutubeContainer = document.getElementById(
+      "artistYoutubeContainer"
+    );
+    this.artistImageSlider = document.getElementById("artistImageSlider");
+    this.modalPrevBtn = document.getElementById("modalPrevBtn");
+    this.modalNextBtn = document.getElementById("modalNextBtn");
     this.artistCards = document.querySelectorAll("[data-artist-card]");
 
     // 필수 요소가 없으면 종료
@@ -78,6 +93,14 @@ class ArtistModal {
         this.closeModal();
       }
     });
+
+    // 이미지 슬라이더 버튼
+    if (this.modalPrevBtn) {
+      this.modalPrevBtn.addEventListener("click", () => this.previousImage());
+    }
+    if (this.modalNextBtn) {
+      this.modalNextBtn.addEventListener("click", () => this.nextImage());
+    }
   }
 
   /**
@@ -85,18 +108,40 @@ class ArtistModal {
    * @param {HTMLElement} card - 클릭된 작가 카드 요소
    */
   openModal(card) {
-    // 카드의 데이터 속성에서 작가 정보 가져오기
-    const name = card.getAttribute("data-artist-name") || "";
-    const role = card.getAttribute("data-artist-role") || "";
-    const image = card.getAttribute("data-artist-image") || "";
-    const desc = card.getAttribute("data-artist-desc") || "";
+    // 카드의 데이터 속성에서 작가 ID 가져오기
+    const artistId = parseInt(card.getAttribute("data-artist-id"));
+
+    // ARTISTS 배열에서 해당 작가 정보 찾기
+    const artist = window.ARTISTS.find((a) => a.id === artistId);
+
+    if (!artist) {
+      console.warn("Artist not found:", artistId);
+      return;
+    }
 
     // 모달에 정보 설정
-    this.modalImage.src = image;
-    this.modalImage.alt = name;
-    this.modalName.textContent = name;
-    this.modalRole.textContent = role;
-    this.modalDesc.textContent = desc;
+    this.modalName.textContent = artist.name;
+    this.modalNameEn.textContent = artist.nameEn;
+    this.modalType.textContent = artist.type || "";
+    this.modalDesc.textContent = artist.description || "";
+
+    // 타입이 없으면 태그 숨기기
+    if (!artist.type) {
+      this.modalType.style.display = "none";
+    } else {
+      this.modalType.style.display = "inline-block";
+    }
+
+    // 유튜브 설정
+    if (artist.youtube) {
+      this.modalYoutube.src = artist.youtube;
+      this.modalYoutubeContainer.style.display = "block";
+    } else {
+      this.modalYoutubeContainer.style.display = "none";
+    }
+
+    // 이미지 슬라이더 설정
+    this.setupImageSlider(artist.modalImg || []);
 
     // 모달 표시
     this.modal.classList.remove("hidden");
@@ -107,16 +152,88 @@ class ArtistModal {
   }
 
   /**
+   * 이미지 슬라이더 설정
+   */
+  setupImageSlider(images) {
+    this.currentImages = images;
+    this.currentImageIndex = 0;
+
+    // 슬라이더 초기화
+    this.artistImageSlider.innerHTML = "";
+
+    if (images.length === 0) {
+      this.artistImageSlider.innerHTML =
+        '<div class="w-full h-full flex items-center justify-center text-gray-400">이미지가 없습니다</div>';
+      this.modalPrevBtn.style.display = "none";
+      this.modalNextBtn.style.display = "none";
+      return;
+    }
+
+    // 이미지 추가
+    images.forEach((imgSrc, index) => {
+      const img = document.createElement("img");
+      img.src = `assets/artist/${imgSrc}`;
+      img.alt = `작품 이미지 ${index + 1}`;
+      img.loading = "lazy";
+      img.className =
+        "absolute inset-0 w-full h-full object-contain transition-opacity duration-300";
+      img.style.opacity = index === 0 ? "1" : "0";
+      this.artistImageSlider.appendChild(img);
+    });
+
+    // 버튼 표시 여부 (이미지가 2개 이상일 때만)
+    if (images.length > 1) {
+      this.modalPrevBtn.style.display = "block";
+      this.modalNextBtn.style.display = "block";
+    } else {
+      this.modalPrevBtn.style.display = "none";
+      this.modalNextBtn.style.display = "none";
+    }
+  }
+
+  /**
+   * 다음 이미지
+   */
+  nextImage() {
+    if (this.currentImages.length <= 1) return;
+
+    const images = this.artistImageSlider.querySelectorAll("img");
+    images[this.currentImageIndex].style.opacity = "0";
+
+    this.currentImageIndex =
+      (this.currentImageIndex + 1) % this.currentImages.length;
+    images[this.currentImageIndex].style.opacity = "1";
+  }
+
+  /**
+   * 이전 이미지
+   */
+  previousImage() {
+    if (this.currentImages.length <= 1) return;
+
+    const images = this.artistImageSlider.querySelectorAll("img");
+    images[this.currentImageIndex].style.opacity = "0";
+
+    this.currentImageIndex =
+      (this.currentImageIndex - 1 + this.currentImages.length) %
+      this.currentImages.length;
+    images[this.currentImageIndex].style.opacity = "1";
+  }
+
+  /**
    * 모달 닫기
    */
   closeModal() {
     this.modal.classList.add("hidden");
     this.modal.classList.remove("flex");
 
+    // 유튜브 정지
+    this.modalYoutube.src = "";
+
     // body 스크롤 복원
     document.body.style.overflow = "";
   }
 }
 
-// 모달 인스턴스 생성
-const artistModal = new ArtistModal();
+// 모달 인스턴스 생성 (전역으로 노출)
+window.artistModal = new ArtistModal();
