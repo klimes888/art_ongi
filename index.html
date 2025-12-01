@@ -6,18 +6,10 @@
     <title>온기</title>
     <style>
       @font-face {
-        font-family: "MiceGothic";
-        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic.woff2")
+        font-family: "MiceMyungjo";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2")
           format("woff2");
-        font-weight: 400;
-        font-display: swap;
-      }
-
-      @font-face {
-        font-family: "MiceGothic";
-        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2")
-          format("woff2");
-        font-weight: 700;
+        font-weight: normal;
         font-display: swap;
       }
       .stripe-bg {
@@ -110,6 +102,79 @@
           font-size: 0.875rem;
         }
       }
+
+      /* 이미지 캐러셀 스타일 */
+      .carousel-container {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .carousel-track {
+        display: flex;
+        gap: 1rem;
+        transition: transform 0.5s ease;
+        will-change: transform;
+      }
+
+      .carousel-image {
+        height: 300px;
+        width: auto;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        flex-shrink: 0;
+      }
+
+      /* 캐러셀 네비게이션 버튼 */
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .carousel-btn:hover {
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .carousel-btn-left {
+        left: 1rem;
+      }
+
+      .carousel-btn-right {
+        right: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .carousel-image {
+          height: 200px;
+        }
+
+        .carousel-btn {
+          width: 40px;
+          height: 40px;
+        }
+
+        .carousel-btn-left {
+          left: 0.5rem;
+        }
+
+        .carousel-btn-right {
+          right: 0.5rem;
+        }
+      }
     </style>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -128,7 +193,7 @@
       };
     </script>
   </head>
-  <body class="font-[MiceGothic] bg-gray-50 full-size">
+  <body class="font-[MiceMyungjo] bg-gray-50 full-size">
     <!-- 히어로 섹션 -->
     <section class="w-full md:h-lvh md:hero-section">
       <div class="w-full h-full relative">
@@ -207,6 +272,107 @@
         </button>
       </div>
     </section>
+
+    <!-- 전시 이미지 캐러셀 -->
+    <section class="w-full overflow-hidden py-8 md:py-12 bg-white">
+      <div class="carousel-container relative">
+        <!-- 왼쪽 버튼 -->
+        <button class="carousel-btn carousel-btn-left" aria-label="이전 이미지">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <!-- 오른쪽 버튼 -->
+        <button class="carousel-btn carousel-btn-right" aria-label="다음 이미지">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <div class="carousel-track">
+          <img src="assets/exhibition/exhibition.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-2.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-3.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-4.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-5.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-6.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-7.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-8.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-9.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-10.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-11.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-12.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-13.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-14.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-15.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-16.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-17.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-18.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-19.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-20.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-21.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-22.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-23.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-24.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-25.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-26.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-27.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-28.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-29.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-30.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-31.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-32.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-33.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-34.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-35.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-36.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-37.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-38.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+
+          <!-- 무한 스크롤을 위한 복제본 -->
+          <img src="assets/exhibition/exhibition.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-2.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-3.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-4.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-5.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-6.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-7.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-8.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-9.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-10.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-11.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-12.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-13.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-14.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-15.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-16.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-17.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-18.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-19.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-20.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-21.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-22.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-23.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-24.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-25.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-26.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-27.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-28.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-29.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-30.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-31.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-32.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-33.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-34.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-35.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-36.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-37.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+          <img src="assets/exhibition/exhibition-38.jpeg" alt="전시 이미지" loading="lazy" class="carousel-image">
+        </div>
+      </div>
+    </section>
+
     <!-- 참여 작가 섹션 -->
     <section class="w-full stripe-bg py-10 md:py-16 animate-on-scroll">
       <div id="artistSection" class="px-4 sm:px-6">
@@ -471,5 +637,85 @@
     <script src="js/scrollAnimation.js"></script>
     <script src="js/artistModal.js"></script>
     <script src="app.js"></script>
+    <script>
+      // 캐러셀 네비게이션
+      document.addEventListener('DOMContentLoaded', function() {
+        const carouselTrack = document.querySelector('.carousel-track');
+        const btnLeft = document.querySelector('.carousel-btn-left');
+        const btnRight = document.querySelector('.carousel-btn-right');
+        const images = document.querySelectorAll('.carousel-image');
+
+        let currentIndex = 0;
+        const totalImages = 38; // 원본 이미지 개수 (복제본 제외)
+        let autoSlideInterval;
+
+        function updateCarousel() {
+          const imageWidth = images[0].offsetWidth;
+          const gap = 16; // 1rem = 16px
+          const moveAmount = (imageWidth + gap) * currentIndex;
+          carouselTrack.style.transform = `translateX(-${moveAmount}px)`;
+        }
+
+        function nextSlide() {
+          currentIndex++;
+
+          // 끝에 도달하면 처음으로
+          if (currentIndex >= totalImages) {
+            currentIndex = 0;
+          }
+
+          updateCarousel();
+        }
+
+        function prevSlide() {
+          currentIndex--;
+
+          // 처음에서 왼쪽으로 가면 마지막으로
+          if (currentIndex < 0) {
+            currentIndex = totalImages - 1;
+          }
+
+          updateCarousel();
+        }
+
+        // 자동 슬라이드 시작
+        function startAutoSlide() {
+          autoSlideInterval = setInterval(nextSlide, 3000); // 3초마다 실행
+        }
+
+        // 자동 슬라이드 정지
+        function stopAutoSlide() {
+          clearInterval(autoSlideInterval);
+        }
+
+        // 자동 슬라이드 재시작
+        function restartAutoSlide() {
+          stopAutoSlide();
+          startAutoSlide();
+        }
+
+        // 오른쪽 버튼 클릭 (다음 이미지)
+        btnRight.addEventListener('click', function() {
+          nextSlide();
+          restartAutoSlide(); // 클릭 후 타이머 재시작
+        });
+
+        // 왼쪽 버튼 클릭 (이전 이미지)
+        btnLeft.addEventListener('click', function() {
+          prevSlide();
+          restartAutoSlide(); // 클릭 후 타이머 재시작
+        });
+
+        // 마우스 호버 시 자동 슬라이드 정지
+        carouselTrack.addEventListener('mouseenter', stopAutoSlide);
+        carouselTrack.addEventListener('mouseleave', startAutoSlide);
+
+        // 윈도우 리사이즈 시 위치 재조정
+        window.addEventListener('resize', updateCarousel);
+
+        // 자동 슬라이드 시작
+        startAutoSlide();
+      });
+    </script>
   </body>
 </html>
