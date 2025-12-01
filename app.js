@@ -118,10 +118,6 @@ window.addEventListener("scroll", function () {
 document.addEventListener("DOMContentLoaded", () => {
   const artistSection = document.getElementById("artistSection");
 
-  console.log("Artist Section:", artistSection);
-  console.log("ARTISTS Data:", window.ARTISTS);
-  console.log("Is Array:", Array.isArray(window.ARTISTS));
-
   if (!artistSection) {
     console.error("artistSection element not found!");
     return;
@@ -137,11 +133,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  console.log(`Rendering ${window.ARTISTS.length} artists...`);
-
   // 작가 그리드 컨테이너 생성
   const gridHTML = `
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-6 md:gap-10 mb-10 md:mb-16 stagger-animation font-[GowoonDodum]" id="artist-grid">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-6 md:gap-10 mb-10 md:mb-16 stagger-animation font-[GowoonDodum]" id="artist-grid">
     </div>
   `;
 
