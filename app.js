@@ -56,39 +56,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const koreanText = featureText.innerHTML;
   const englishText = `
-        Warmth is something that cannot be seen, yet its presence can be felt.<br />
-        The warmth that begins from one’s body and mind spreads through the fingertips and toes,<br />
-        passing through moments of our daily lives, flowing through the gaps between relationships,<br />
-        and gently connecting different beings.<br />
+        Warmth is something that cannot be seen, yet its presence can be felt.
+        The warmth that begins from one’s body and mind spreads through the fingertips and toes,
+        passing through moments of our daily lives, flowing through the gaps between relationships,
+        and gently connecting different beings.
         This exhibition begins by tracing those subtle traces of warmth.<br /><br />
 
-        The artist’s memories and emotions flow through the movements of the body<br />
-        and permeate into the work.<br />
-        When we encounter a piece that makes us pause,<br />
-        we slowly receive its warmth with a temperature uniquely our own.<br />
-        As the air between artist and viewer overlaps,<br />
-        a new texture quietly emerges.<br /><br />
+        The artist’s memories and emotions flow through the movements of the body
+        and permeate into the work.
+        When we encounter a piece that makes us pause,
+        we slowly receive its warmth with a temperature uniquely our own.
+        As the air between artist and viewer overlaps,
+        a new texture quietly emerges.
 
-        In the moment of parting, a fragment of the warmth that lingered beside the work<br />
-        moves on toward another place.<br />
-        In this way, each piece forms the shape of warmth<br />
+        In the moment of parting, a fragment of the warmth that lingered beside the work
+        moves on toward another place.
+        In this way, each piece forms the shape of warmth
         through countless overlaps and dispersals.<br /><br />
 
-        The artists have walked toward this exhibition,<br />
-        sharing space and time together.<br />
-        Though their materials and methods differ,<br />
-        their ways of observing objects and the warmth at their fingertips<br />
-        influence one another, creating subtle resonances.<br />
-        Sometimes they meet as if overlapping,<br />
-        and at other times they scatter and return to their own places—<br />
-        a process that takes a new form each time.<br />
-        Even when unintentional, these encounters<br />
+        The artists have walked toward this exhibition,
+        sharing space and time together.
+        Though their materials and methods differ,
+        their ways of observing objects and the warmth at their fingertips
+        influence one another, creating subtle resonances.
+        Sometimes they meet as if overlapping,
+        and at other times they scatter and return to their own places—
+        a process that takes a new form each time.
+        Even when unintentional, these encounters
         often become small starting points that broaden the scope of their work.<br /><br />
 
-        The textures of warmth held within each piece are different,<br />
-        yet within them lie quiet layers of time accumulated by the artists.<br />
-        Gathered together, these layers overlap and disperse,<br />
-        becoming a flowing movement that fills the space.<br />
+        The textures of warmth held within each piece are different,
+        yet within them lie quiet layers of time accumulated by the artists.
+        Gathered together, these layers overlap and disperse,
+        becoming a flowing movement that fills the space.
         We invite you to slowly feel the warmth that resides before us now.
     `;
 

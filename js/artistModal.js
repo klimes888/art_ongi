@@ -13,6 +13,7 @@ class ArtistModal {
     this.modalClose = null;
     this.modalYoutube = null;
     this.modalYoutubeContainer = null;
+    this.modalContentContainer = null;
     this.artistImageSlider = null;
     this.modalPrevBtn = null;
     this.modalNextBtn = null;
@@ -51,6 +52,7 @@ class ArtistModal {
     this.modalYoutubeContainer = document.getElementById(
       "artistYoutubeContainer"
     );
+    this.modalContentContainer = document.querySelector(".modal-content-container");
     this.artistImageSlider = document.getElementById("artistImageSlider");
     this.modalPrevBtn = document.getElementById("modalPrevBtn");
     this.modalNextBtn = document.getElementById("modalNextBtn");
@@ -136,8 +138,18 @@ class ArtistModal {
     if (artist.youtube) {
       this.modalYoutube.src = artist.youtube;
       this.modalYoutubeContainer.style.display = "block";
+      // 콘텐츠 영역을 8칼럼으로 설정
+      if (this.modalContentContainer) {
+        this.modalContentContainer.classList.remove("md:col-span-12");
+        this.modalContentContainer.classList.add("md:col-span-8");
+      }
     } else {
       this.modalYoutubeContainer.style.display = "none";
+      // 콘텐츠 영역을 12칼럼(전체 너비)으로 설정
+      if (this.modalContentContainer) {
+        this.modalContentContainer.classList.remove("md:col-span-8");
+        this.modalContentContainer.classList.add("md:col-span-12");
+      }
     }
 
     // 이미지 슬라이더 설정
